@@ -76,7 +76,7 @@ Language specification
 <intconst> ::= "+"<int> | "-"<int> | <int>
 <int> ::= <digit>{ <int> }
 
-<charconst> ::= '<letter>' | '<digit>'
+<charconst> ::= '<letter>' | '<digit>' | ' '
 <string> ::= <charconst>{<string>}
 
 <identifier> ::= <id> [ "."<id> ]
