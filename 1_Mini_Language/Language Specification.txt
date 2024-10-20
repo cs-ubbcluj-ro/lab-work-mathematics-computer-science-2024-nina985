@@ -1,0 +1,86 @@
+Language specification
+
+1. Language Definition:
+
+ 1.1. Alphabet:
+     a. Upper (A-Z) and lower case letters (a-z) of the English alphabet
+     b. Underline character '_'
+     c. Decimal digits (0-9)
+
+ 1.2. Lexic:
+     a. Special symbols:
+	-operators
+	    -arithmetic + - * / %
+	    -relational == < <= > >= !=
+	    -logical && || !
+	    -assignment operator =
+	    -extraction operator << >>
+
+	-separators ;(end of statement), ()(function calls and groups of expressions); {}(block of code), ,(separating items), .(accessing struct fields)
+
+	-reserved words: int, char, struct, if, else, while, for, cin, cout, return
+
+     b. Identifiers: 
+	 Must start with a letter, can be followed by letters, numbers or undrescores; rule:
+		<identifier> ::= <letter> { <letter> | <digit> | "_" }
+		<letter> ::= "a" | "b" |...| "z" | "A" | "B" |...| "Z" |
+		<digit> ::= "0" | "1" |...| "9"
+     c. Constants
+	-integer
+		<intconst> ::= "+"<int> | "-"<int> | <int>
+		<int> ::= <digit>{ <int> }
+	-character
+		<charconst> ::= '<letter>' | '<digit>'
+
+2. Syntax (predefined tokens are specified between quotation marks)
+
+<program> ::= <declaration_list> <statement_list>
+
+<declaration_list> ::= <declaration> | <declaration> <declaration_list>
+<declaration> ::= "int" <identifier> [ "=" <expression> ] ";"
+	         |"char" <identifier> [ "=" <charconst> ] ";"
+	         |"struct" <identifier> "{" <field_list> "};"
+<field_list> ::= <field> | <field> <field_list>
+<field> ::= "int" <identifier> ";"
+	   |"char" <identifier> ";"
+
+<statement_list> ::= <statement> | <statement> <statement_list>
+<statement> ::= <assignment_stmt>
+	       |<input_stmt>
+	       |<output_stmt>
+	       |<cond_stmt>
+	       |<loop_stmt_while>
+
+<assignment_stmt> ::= <identifier> "=" <expression> ";"
+
+<input_stmt> ::= "cin >>" <identifier> {">>" <identifier>} ";"
+<output_stmt> ::= "cout <<" ( <string> | <expression> ) {"<<"( <string> | <expression> )} ";"
+
+<cond_stmt> ::= "if (" <cond_expression>")" "{" <statement_list> "}" [ "else" "{" <statement_list> "}" ]
+<loop_stmt_while> ::= "while (" <cond_expression>")" "{" <statement_list> "}"
+
+<expression> ::= <term> | <expression> <add_op> <term>
+<term> ::= <factor> | <term> <mul_op> <factor>
+<factor> ::= "(" <expression> ")" | <identifier> | <intconst>
+
+<conditional_expression> ::= <expression> <rel_op> <expression> 
+                           | <conditional_expression> <logic_op> <conditional_expression>
+                           | "(" <conditional_expression> ")"
+                           | "!" <conditional_expression>
+
+<add_op> ::= "+" | "-"
+<mul_op> ::= "*" | "/" | "%"
+<rel_op> ::= "==" | "<" | "<=" | ">" | ">=" | "!="
+<logic_op> ::= "&&" | "||"
+
+<intconst> ::= "+"<int> | "-"<int> | <int>
+<int> ::= <digit>{ <int> }
+
+<charconst> ::= '<letter>' | '<digit>'
+<string> ::= <charconst>{<string>}
+
+<identifier> ::= <id> [ "."<id> ]
+<id> ::= <letter> { <letter> | <digit> | "_" }
+
+<letter> ::= "a" | "b" |...| "z" | "A" | "B" |...| "Z" |
+<digit> ::= "0" | "1" |...| "9"

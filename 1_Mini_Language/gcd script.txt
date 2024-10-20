@@ -1,0 +1,17 @@
+int a;
+int b;
+int temp;
+
+cout << "Input first number ";
+cin >> a;
+
+cout << "Input second number ";
+cin >> b;
+
+while (b != 0) { 
+	temp = b;
+	b = a % b; 
+	a = temp;
+}
+
+cout << "The GCD is " << a;
