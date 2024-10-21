@@ -18,7 +18,7 @@ Language specification
 
 	-separators ;(end of statement), ()(function calls and groups of expressions); {}(block of code), ,(separating items), .(accessing struct fields)
 
-	-reserved words: int, char, struct, if, else, while, for, cin, cout, return
+	-reserved words: int, char, struct, if, else, while, cin, cout, return
 
      b. Identifiers: 
 	 Must start with a letter, can be followed by letters, numbers or undrescores; rule:
