@@ -78,7 +78,7 @@ Language specification
 <logic_op> ::= "&&" | "||"
 
 <intconst> ::= "+"<int> | "-"<int> | <int>
-<int> ::= <digit>{ <int> }
+<int> ::= "0" | <non_zero_digit>{ <int> }
 
 <charconst> ::= '<letter>' | '<digit>' | ' '
 <string> ::= <charconst>{<string>}
@@ -87,4 +87,5 @@ Language specification
 <id> ::= <letter> { <letter> | <digit> | "_" }
 
 <letter> ::= "a" | "b" |...| "z" | "A" | "B" |...| "Z" |
-<digit> ::= "0" | "1" |...| "9"
+<digit> ::= "0" | <non_zero_digit>
+<non_zero_digit> ::= "1" | "2" |...| "9"
