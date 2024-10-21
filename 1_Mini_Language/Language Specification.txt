@@ -37,7 +37,8 @@ Language specification
 
 2. Syntax (predefined tokens are specified between quotation marks)
 
-<program> ::= <declaration_list> <statement_list>
+<program> ::= "#include <iostream>" "using namespace std;" "int main()" "{" <script> "}"
+<script> ::= <declaration_list> <statement_list>
 
 <declaration_list> ::= <declaration> | <declaration> <declaration_list>
 <declaration> ::= "int" <identifier> [ "=" <expression> ] ";"
