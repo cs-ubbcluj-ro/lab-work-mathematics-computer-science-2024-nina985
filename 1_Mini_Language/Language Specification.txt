@@ -21,10 +21,13 @@ Language specification
 	-reserved words: int, char, struct, if, else, while, cin, cout, return
 
      b. Identifiers: 
-	 Must start with a letter, can be followed by letters, numbers or undrescores; rule:
-		<identifier> ::= <letter> { <letter> | <digit> | "_" }
+	 Must start with a letter, can be followed by letters, numbers or undrescores
+	 An identifier can either be the name of a single variable (int or char type) or of the form 'id.id' in the case of struct type variables, in order to access its fields (A struct cannot have another struct as a field); rule:
+		<identifier> ::= <id> [ "."<id> ]
+		<id> ::= <letter> { <letter> | <digit> | "_" }
 		<letter> ::= "a" | "b" |...| "z" | "A" | "B" |...| "Z" |
 		<digit> ::= "0" | "1" |...| "9"
+
      c. Constants
 	-integer
 		<intconst> ::= "+"<int> | "-"<int> | <int>
