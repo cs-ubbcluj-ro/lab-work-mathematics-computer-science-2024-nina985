@@ -1,17 +1,22 @@
-int a;
-int b;
-int temp;
+#include <iostream>
+using namespace std;
+int main()
+{
+    int a;
+    int b;
+    int temp;
 
-cout << "Input first number ";
-cin >> a;
+    cout << "Input first number ";
+    cin >> a;
 
-cout << "Input second number ";
-cin >> b;
+    cout << "Input second number ";
+    cin >> b;
 
-while (b != 0) { 
-	temp = b;
-	b = a % b; 
-	a = temp;
+    while (b != 0) { 
+        temp = b; 
+        b = a % b; 
+        a = temp;
+    }
+
+    cout << "The GCD is " << a;
 }
-
-cout << "The GCD is " << a;
