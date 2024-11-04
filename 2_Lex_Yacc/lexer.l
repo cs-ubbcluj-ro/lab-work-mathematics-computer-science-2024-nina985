@@ -98,7 +98,7 @@
 "!"                                   	{ add_to_PIF(yytext, -1); }
 
 
-[a-zA-Z_][a-zA-Z0-9_]* { 
+[a-zA-Z][a-zA-Z0-9_]* { 
     int index = add_to_ST(yytext);
     add_to_PIF(yytext, index);
 }//IDENTIFIER
