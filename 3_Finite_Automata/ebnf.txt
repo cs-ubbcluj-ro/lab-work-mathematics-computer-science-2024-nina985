@@ -1,0 +1,15 @@
+<finite-automaton> ::= <states> <alphabet> <transitions> <start-state> <final-states>
+
+<states>          ::= "states:" <state> {"," <state>}
+<alphabet>        ::= "alphabet:" <symbol> {"," <symbol>}
+<transitions>     ::= "transitions:" <transition> {"; " <transition>}
+<transition>      ::= <state> "," <symbol> "->" <state>
+<start-state>     ::= "start:" <state>
+<final-states>    ::= "final:" <state> {"," <state>}
+
+<state>           ::= <alphanumeric-string>
+<symbol>          ::= <single-character>
+<single-character>::= <letter> | <digit>
+<alphanumeric-string> ::= [<single-character>]
+<letter>          ::= "a" | "b" | ... | "z" | "A" | "Z"
+<digit>           ::= "0" | "1" | ... | "9"
