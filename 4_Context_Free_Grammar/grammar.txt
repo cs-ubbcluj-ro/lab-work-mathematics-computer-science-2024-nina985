@@ -1,0 +1,139 @@
+-NonTerminals = { program, script, declaration_list, declaration, identifier, expression, charconst, field_list, field, statement, assignment_stmt, input_stmt, inputs, output_stmt, outputs, cond_stmt, loop_stmt_while, expression, string, cond_expression, term,mul_op, factor, intconst, rel_op,logic_op, int, letter, digit, non_zero_digit, id, id2, id_end }
+
+-Terminals = { #include <iostream>, using namespace std;, int main(), 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, a, b,... z, A, B,... Z, _, +, -, *, /, %, ==, <, <=, >, >=, !=, &&, ||, !, =, <<, >>, ;, ., {, }, (, ), ', int, char, struct, if, else, while, cin, cout, return }
+
+-StartSymbol = program
+
+-Productions :
+
+<program> ::= "#include <iostream>" "using namespace std;" "int main()" "{" <script> "}"
+<script> ::= <declaration_list> <statement_list>
+
+<declaration_list> ::= <declaration> 
+		     | <declaration> <declaration_list>
+
+<declaration> ::= <field>
+	        | "struct" <identifier> "{" <field_list> "}" ";"
+
+<field_list> ::= <field> 
+	       | <field> <field_list>
+
+<field> ::= "int" <identifier> ";"
+	  | "int" <identifier> "=" <expression> ";"
+	  | "char" <identifier> ";".
+	  | "char" <identifier> "=" <charconst> ";"
+
+<statement_list> ::= <statement>
+		   | <statement> <statement_list>
+
+<statement> ::= <assignment_stmt>
+	      | <input_stmt>
+	      | <output_stmt>
+	      | <cond_stmt>
+	      | <loop_stmt_while>
+
+<assignment_stmt> ::= <identifier> "=" <expression> ";"
+		    | <identifier> "=" <charconst> ";"
+
+<input_stmt> ::= "cin" <inputs> ";"
+
+<inputs> ::= ">>" <identifier>
+	   | ">>" <identifier> <inputs>
+
+<output_stmt> ::= "cout" <outputs> ";"
+
+<outputs> ::= "<<" <output>
+	    | "<<" <output> <outputs>
+
+<output> ::= <string> 
+	   | <expression>
+
+<cond_stmt> ::= "if" "(" <cond_expression> ")" "{" <statement_list> "}"
+	      | "if" "(" <cond_expression> ")" "{" <statement_list> "}" "else" "{" <statement_list> "}"
+
+<loop_stmt_while> ::= "while" "(" <cond_expression>")" "{" <statement_list> "}"
+
+<expression> ::= <term> 
+	       | <expression> <add_op> <term>
+
+<term> ::= <factor> 
+	 | <term> <mul_op> <factor>
+
+<factor> ::= "(" <expression> ")" 
+	   | <identifier> 
+	   | <intconst>
+
+<conditional_expression> ::= <expression> <rel_op> <expression> 
+                           | <conditional_expression> <logic_op> <conditional_expression>
+                           | "(" <conditional_expression> ")"
+                           | "!" <conditional_expression>
+
+<add_op> ::= "+" 
+	   | "-"
+
+<mul_op> ::= "*" 
+	   | "/" 
+	   | "%"
+
+<rel_op> ::= "==" 
+	   | "<" 
+	   | "<=" 
+	   | ">" 
+	   | ">=" 
+	   | "!="
+
+<logic_op> ::= "&&"
+	     | "||"
+
+<intconst> ::= "+"<int> 
+	     | "-"<int> 
+	     | <int>
+
+<int> ::= "0" 
+	| <non_zero_digit>
+	| <non_zero_digit> <int>
+
+<charconst> ::= "'" <letter> "'" 
+	      | "'" <digit> "'" 
+	      | "'" "'"
+
+<string> ::= <charconst>
+	   | <charconst> <string>
+
+<identifier> ::= <id>
+	       | <id> "." <id>
+
+<id> ::= <letter> <id2>
+
+<id2> ::= <id_end> <id2>
+	| epsilon
+
+<id_end> ::= <letter> 
+	   | <digit> 
+	   | "_"
+
+<letter> ::=	  "a" 
+	   	| "b" 
+	   	| "c"
+		| "d"
+		| "e"
+		| "f"
+		| ...
+	   	| "z" 
+	   	| "A" 
+	   	| "B" 
+	   	|...
+	   	| "Z"
+
+<digit> ::= "0" 
+	  | <non_zero_digit>
+
+<non_zero_digit> ::= "1" 
+		   | "2"
+          	   | "3"
+          	   | "4"
+          	   | "5"
+          	   | "6"
+          	   | "7"
+          	   | "8"
+          	   | "9"
